@@ -49,6 +49,23 @@ cmake [-G generator] [-DYAML_BUILD_SHARED_LIBS=on|OFF] ..
 
 **Note:** To clean up, just remove the `build` directory.
 
+## How to Integrate it within your project using CMake
+
+You can use for example FetchContent :
+
+```cmake
+include(FetchContent)
+
+FetchContent_Declare(
+  yaml-cpp
+  GIT_REPOSITORY https://github.com/jbeder/yaml-cpp.git
+  GIT_TAG <tag_name> # Can be a tag (yaml-cpp-x.x.x), a commit hash, or a branch name (master)
+)
+FetchContent_MakeAvailable(yaml-cpp)
+
+target_link_libraries(YOUR_LIBRARY PUBLIC yaml-cpp::yaml-cpp) # The library or executable that require yaml-cpp library
+```
+
 ## Recent Releases
 
 [yaml-cpp 0.6.0](https://github.com/jbeder/yaml-cpp/releases/tag/yaml-cpp-0.6.0) released! This release requires C++11, and no longer depends on Boost.
